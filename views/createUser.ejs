@@ -16,11 +16,11 @@
 
     <h1>create a user</h1>
     <form method="POST" action="/users">
-      <label>Name
+      <label>Name<span class="asterisk">&#42;</span>
         <input name="user[name]" type="text" required>
       </label>
-      <label>Email
-        <input name="user[email]" type="text" required>
+      <label>Email<span class="asterisk">&#42;</span>
+        <input name="user[email]" type="email" required>
       </label>
       <label>City
         <input name="user[city]" type="text">
@@ -28,35 +28,24 @@
       <label>Favorite Trail
         <input name="user[favorite_trail]" type="text">
       </label>
-      <label>Username
+      <label>Username<span class="asterisk">&#42;</span>
         <input name="user[username]" type="text" required>
       </label>
-      <label>Password
-        <input name="user[password]" type="text" required>
+      <label>Password<span class="asterisk">&#42;</span>
+        <input name="user[password]" type="password" required>
       </label>
+      <p>Password should be at least four characters, contain at least one letter, and at least one special character.</p>
       <button type="submit">Join Now</button>
     </form>
+    <p><span class="asterisk">&#42;</span>Required fields</p>
 
     <% if(info.hasError) { %>
-      <div class="row">
-        <div class="col-md-6 errorBlock">
-          <% for(var item in error) { %>
-            <strong><h6><%= item %></h6></strong>
-            <ul>
-            <% for(var i = 0; i < error[item].length; i++) { %>
-                <li>
-                  <i>
-                    <%= error[item][i].message %>
-                  </i>
-                </li>
+          <% for(var item in info.error) { %>
+            <% for(var i = 0; i < info.error[item].length; i++) { %>
+                  <p><%= info.error[item][i].message %></p>
             <% } %>
-            </ul>
           <% } %>
-        </div>
-      </div>
     <% } %>
-
-
 
   </body>
 </html>

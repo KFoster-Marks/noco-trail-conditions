@@ -18,40 +18,42 @@ router.post('/', function(req, res) {
   };
   info.error = {};
   checkPassword(req, info);
-
   if (info.hasError) {
-    console.log(info.error.password);
     res.render('createUser', {info: info});
   } else {
-    console.log("There was no error!");
-    // bcrypt.genSalt(Number(req.body.saltRounds), function(err, salt) {
-    //     bcrypt.hash(req.body.user.password, salt, function(err, hash) {
-    //
-    //       knex('users').insert({
-    //         name: req.body.user.name,
-    //         email: req.body.user.email,
-    //         city:req.body.user.city,
-    //         favorite_trail:req.body.user.favorite_trail,
-    //         username: req.body.user.username,
-    //         password: hash
-    //
-    //       }).returning('id')
-    //
-    //         .then(function(id) {
-    //           req.session = {};
-    //           req.session.id = id;
-    //           req.session.username = req.body.user.username;
-    //           console.log(req.session);
-    //           res.redirect('/');
-    //
-    //         }).catch(function(err) {
-    //         console.error(err);
-    //         res.sendStatus(500);
-    //       });
-    //     });
-    //   });
+    bcrypt.genSalt(Number(req.body.saltRounds), function(err, salt) {
+        bcrypt.hash(req.body.user.password, salt, function(err, hash) {
+
+          knex('users').insert({
+            name: req.body.user.name,
+            email: req.body.user.email,
+            city:req.body.user.city,
+            favorite_trail:req.body.user.favorite_trail,
+            username: req.body.user.username,
+            password: hash
+
+          }).returning('id')
+
+            .then(function(id) {
+              req.session = {};
+              req.session.id = id;
+              req.session.username = req.body.user.username;
+              console.log(req.session);
+              res.redirect('/');
+
+            }).catch(function(err) {
+            console.error(err);
+            res.sendStatus(500);
+          });
+        });
+      });
   }
 });
+
+
+
+/// END CHECK IF USER EXISTS /////
+
 
 function checkPassword(req, info) {
   console.log('entered checkPassword function');
@@ -119,6 +121,31 @@ router.post('/auth', function(req, res, next) {
 });
 
 // UPDATE PROFILE ROUTES //
+router.get('/edit/:id', function(req, res) {
+  knex('users').select().where({id: req.params.id}).then(function(data){
+    res.status(200).render('editUser', {user:data[0]});
+  }).catch(function(err){
+    console.error(err);
+    res.sendStatus(500);
+  });
+});
+
+router.put('/edit/:id', function(req, res) {
+
+  knex('users').where('id', req.params.id).update({
+    name: req.body.user.name,
+    email: req.body.user.email,
+    city:req.body.user.city,
+    favorite_trail:req.body.user.favorite_trail,
+    username: req.body.user.username,
+  }).returning('id')
+    .then(function(id) {
+      res.redirect('/');
+    }).catch(function(err) {
+    console.error(err);
+    res.sendStatus(500);
+  });
+});
 
 
 
@@ -135,7 +162,7 @@ router.get('/delete', function(req, res) {
 
 router.delete('/delete', function(req, res) {
   console.log('entered delete function');
-  knex('users').delete().where({id: req.session.id}).then(function(data) {
+  knex('users').delete().where({id: JSON.parse(req.session.id)}).then(function(data) {
     console.log(data);
     req.session = null;
     res.redirect('/');
