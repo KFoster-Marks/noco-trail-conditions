@@ -23,7 +23,7 @@
                 <li>Welcome,
                     <%= session.username %>
                 </li>
-                <li><a href="/users/edit" class="nav-button-primary">Update Profile</a></li>
+                <li><a href="/users/edit/<%=session.id%>" class="nav-button-primary">Update Profile</a></li>
                 <li><a href="/users/delete" class="nav-button-primary">Delete</a></li>
                 <li><a href="/users/logout" class="nav-button-primary">Logout</a></li>
             <% } %>

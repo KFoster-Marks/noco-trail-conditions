@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/head %>
+  </head>
+  <body>
+
+    <header class="nav">
+        <nav class="nav-main">
+            <a class="nav-logo" href="/">
+                <h1>NoCoTrailConditions</h1>
+            </a>
+        </nav>
+    </header>
+
+
+    <h1>Edit Your Profile</h1>
+    <form method="POST" action="/users/edit/<%= user.id %>?_method=PUT">
+      <label>Name
+        <input name="user[name]" type="text" placeholder="<%=user.name%>" value="<%=user.name%>" required>
+      </label>
+      <label>Email
+        <input name="user[email]" type="email" placeholder="<%=user.email%>" value="<%=user.email%>" required>
+      </label>
+      <label>City
+        <input name="user[city]" type="text" placeholder="<%=user.city%>" value="<%=user.city%>">
+      </label>
+      <label>Favorite Trail
+        <input name="user[favorite_trail]" type="text" placeholder="<%=user.favorite_trail%>" value="<%=user.favorite_trail%>">
+      </label>
+      <label>Username
+        <input name="user[username]" type="text" placeholder="<%=user.username%>" value="<%=user.username%>" required>
+      </label>
+
+      <button type="submit">Submit Changes</button>
+    </form>
+
+  </body>
+</html>
