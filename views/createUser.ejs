@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/head %>
+  </head>
+  <body>
+
+    <header class="nav">
+        <nav class="nav-main">
+            <a class="nav-logo" href="/">
+                <h1>NoCoTrailConditions</h1>
+            </a>
+        </nav>
+    </header>
+
+
+    <h1>create a user</h1>
+    <form method="POST" action="/users">
+      <label>Name
+        <input name="user[name]" type="text" required>
+      </label>
+      <label>Email
+        <input name="user[email]" type="text" required>
+      </label>
+      <label>City
+        <input name="user[city]" type="text">
+      </label>
+      <label>Favorite Trail
+        <input name="user[favorite_trail]" type="text">
+      </label>
+      <label>Username
+        <input name="user[username]" type="text" required>
+      </label>
+      <label>Password
+        <input name="user[password]" type="text" required>
+      </label>
+      <button type="submit">Join Now</button>
+    </form>
+
+    <% if(info.hasError) { %>
+      <div class="row">
+        <div class="col-md-6 errorBlock">
+          <% for(var item in error) { %>
+            <strong><h6><%= item %></h6></strong>
+            <ul>
+            <% for(var i = 0; i < error[item].length; i++) { %>
+                <li>
+                  <i>
+                    <%= error[item][i].message %>
+                  </i>
+                </li>
+            <% } %>
+            </ul>
+          <% } %>
+        </div>
+      </div>
+    <% } %>
+
+
+
+  </body>
+</html>

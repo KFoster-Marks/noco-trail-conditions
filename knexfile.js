@@ -4,7 +4,7 @@ module.exports = {
 
   development: {
     client: 'postgresql',
-    connection: 'postgres://localhost/trail-conditions',
+    connection: 'postgres://localhost/trailConditions',
     pool: {
       min: 1,
       max: 1

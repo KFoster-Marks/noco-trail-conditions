@@ -3,9 +3,9 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('conditions', function (table) {
     table.increments();
-    table.integer('trail_id').notNullable();
-    table.string('comment').notNullable();
-    table.timestamp('creation_date').notNullable();
+    table.integer('trail_id');
+    table.text('comment');
+    table.timestamp('creation_date');
   }).then(function(data) {
 
     return Promise.all([
@@ -27,5 +27,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTableIfExists('users');
+  return knex.schema.dropTableIfExists('conditions');
 };

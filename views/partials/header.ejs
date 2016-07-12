@@ -1,0 +1,43 @@
+<header class="nav">
+
+    <nav class="nav-main">
+        <a class="nav-logo" href="/">
+            <h1>NoCoTrailConditions</h1>
+        </a>
+        <ul class="nav-menu">
+            <li>
+                <a href="#">Trail Areas</a>
+            </li>
+        </ul>
+    </nav>
+    <!-- end nav-main -->
+
+    <!-- begin nav utility -->
+    <nav class="nav-utility">
+        <ul class="nav-menu">
+
+            <!-- if a user is logged in -->
+
+
+            <% if (session.username) { %>
+                <li>Welcome,
+                    <%= session.username %>
+                </li>
+                <li><a href="/users/edit" class="nav-button-primary">Update Profile</a></li>
+                <li><a href="/users/delete" class="nav-button-primary">Delete</a></li>
+                <li><a href="/users/logout" class="nav-button-primary">Logout</a></li>
+            <% } %>
+
+
+                    <!-- else -->
+
+            <% if (!session.username) { %>
+                <li><a href="/users/login">Log In</a></li>
+                <li><a href="/users" class="nav-button-primary">Sign Up</a></li>
+            <% } %>
+
+
+        </ul>
+    </nav>
+
+</header>

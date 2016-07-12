@@ -6,6 +6,8 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.string('name').notNullable();
     table.string('email').notNullable();
+    table.string('city');
+    table.string('favorite_trail');
     table.string('username').notNullable();
     table.string('password').notNullable();
 
@@ -15,22 +17,28 @@ exports.up = function(knex, Promise) {
       knex('users').insert({
         name: 'Jennie Zinko',
         email: 'jzinko@gmail.com',
+        city: 'Fort Collins',
+        favorite_trail: 'Horsetooth Rock',
         username: 'jzinko',
-        password: 'jzinko'
+        password: '1234'
       }),
 
       knex('users').insert({
         name: 'Aaron Marks',
         email: 'awie@gmail.com',
+        city: 'Loveland',
+        favorite_trail: 'Devil\s Backbone',
         username: 'aaron',
-        password: 'aaron'
+        password: '1234'
       }),
 
       knex('users').insert({
-        name: 'Lydia Paige',
+        name: 'Lydia Page',
         email: 'ld@gmail.com',
-        username: 'lyds',
-        password: 'ld'
+        city: 'LaPorte',
+        favorite_trail: 'Timber Trail',
+        username: 'lydia',
+        password: '1234'
       })
     ]);
   });

@@ -4,34 +4,49 @@ require('dotenv').load();
 
 var express = require('express');
 var path = require('path');
-var bcrypt = require('bcrypt');
 var bodyParser = require('body-parser');
-var cookieSession = require('cookie-session');
 var logger = require('morgan');
-var pg = require('pg');
-var port = 3000;
+var cookieParser = require('cookie-parser');
+var cookieSession = require('cookie-session');
+var methodOverride = require('method-override');
+require('dotenv').load();
 
+var index = require('./routes/index');
+var users = require('./routes/users');
+//var conditions = require('./routes/conditions');
 
 var app = express();
 
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(logger('dev'));
+app.use(methodOverride('_method'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(cookieParser());
 app.use(cookieSession({
   name: 'session',
-  keys: [process.env['KEY']]
+  keys: [
+    process.env.SESSION_KEY1,
+    process.env.SESSION_KEY2,
+    process.env.SESSION_KEY3
+  ]
 }));
 
-app.get('/', function(req, res) {
-  console.log('Hello world!');
-  res.send('hello, world');
+app.use(function(req, res, next) {
+  res.locals.session = req.session;
+  console.log(res.locals.session);
+  next();
 });
 
-var port = process.env.PORT || 3000;
+app.use('/', index);
+app.use('/users', users);
+//app.use('/conditions', conditions);
+
+
+
+var port = process.env.PORT || 8080;
 app.listen(port, function() {
   console.log("Listening on port " + port);
 });
