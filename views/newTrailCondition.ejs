@@ -1,0 +1,22 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/head %>
+  </head>
+  <body>
+    <% include partials/header %>
+
+    <h1>create new trail condition</h1>
+
+    <form method='POST' action='/trails/<%= id %>'>
+
+      <label>Comment
+        <textarea rows='5' cols='40' minlength='20' name='condition[comment]' type='text' placeholder='Write comment here' required></textarea>
+      </label>
+      <button type="submit">Add Condition</button>
+    </form>
+
+  </body>
+</html>

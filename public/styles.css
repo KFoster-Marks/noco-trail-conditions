@@ -62,7 +62,7 @@
 #center-div a {
   text-decoration: none;
 }
-#center-div a {
+#center-div a, #link-button {
   padding: 10px;
   margin: 10px;
   background-color: #DC3F1C;

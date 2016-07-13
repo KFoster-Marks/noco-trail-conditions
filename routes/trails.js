@@ -22,7 +22,8 @@ router.get('/:id', function(req, res) {
     }).then(function(data) {
       console.log(data);
         res.status(200).render('showSingleTrail', {
-            trail: data[0]
+            trail: data[0],
+            trails: data
         });
     }).catch(function(err) {
       console.error(err);
@@ -31,15 +32,30 @@ router.get('/:id', function(req, res) {
 });
 
 
-
-
-
-
-
-
-router.get('/new', function(req, res) {
-    res.render('newTrailCondition');
+router.get('/:id/new', function(req, res) {
+    res.render('newTrailCondition', {id: req.params.id});
 });
+
+router.post('/:id', function(req, res) {
+  console.log('**************');
+  console.log(req.params.id);
+  knex('conditions').insert({
+    trail_id: req.params.id,
+    comment: req.body.condition.comment,
+    creation_date: new Date()
+  })
+  .then(function(data){
+    res.redirect('/');
+  })
+  .catch(function(err) {
+  console.error(err);
+  res.sendStatus(500);
+});
+});
+
+
+
+
 
 
 

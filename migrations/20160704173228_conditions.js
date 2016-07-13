@@ -17,8 +17,20 @@ exports.up = function(knex, Promise) {
       }),
 
       knex('conditions').insert({
+        trail_id: '2',
+        comment: 'Ice has melted a little bit throughout the day, making conditions really slushy.',
+        creation_date: new Date()
+      }),
+
+      knex('conditions').insert({
         trail_id: '1',
         comment: 'Sunny and windy and a family of rattlesnakes terrorizing small children.',
+        creation_date: new Date()
+      }),
+
+      knex('conditions').insert({
+        trail_id: '1',
+        comment: 'Hundreds of mountain lions and bears patrolling the area. Better stay away today.',
         creation_date: new Date()
       })
 
