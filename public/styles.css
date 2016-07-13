@@ -1,3 +1,71 @@
+
 .error-message {
   color: red;
+}
+.navbar {
+  background-color: white;
+  margin: 0;
+}
+.navbar a {
+  text-decoration: none;
+}
+.navbar-nav>li>a {
+  padding: 10px;
+  background-color: #DC3F1C;
+  border-radius: 5px;
+  color: white;
+}
+.navbar-nav>li>a:hover {
+  background-color: #D8A027;
+  color: #DC3F1C;
+}
+.navbar-nav>li {
+  margin-right: 5px;
+}
+.navbar-header {
+  margin: 20px;
+}
+.navbar-header span {
+  color: #DC3F1C;
+}
+.navbar h1 {
+  margin: 0;
+  color: #D8A027;
+  font-family: 'Monoton', cursive;
+}
+.navbar-right {
+  margin: 20px 20px 0 0;
+}
+#landing-image {
+  /*width: 100%;*/
+  height: 525px;
+  background-image: url('https://images.unsplash.com/uploads/14114036359651bd991f1/b3ed8fdf?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=f522d9aa3c2ff08ee35e06b019e9baa7');
+  background-size: cover;
+  background-position: center;
+  overflow-x: hidden;
+}
+#center-div {
+  background-color: #D8A027;
+  opacity: .75;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 80px;
+  padding: 20px;
+}
+#center-div h1 {
+  margin-top: 0;
+}
+#center-div .form-control {
+  margin: 20px;
+  width: 90%;
+}
+#center-div a {
+  text-decoration: none;
+}
+#center-div a {
+  padding: 10px;
+  margin: 10px;
+  background-color: #DC3F1C;
+  border-radius: 5px;
+  color: white;
 }
