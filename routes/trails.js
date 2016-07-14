@@ -3,6 +3,8 @@
 var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex');
+var moment = require('moment');
+moment().format();
 
 
 // SHOW TRAIL //
@@ -16,20 +18,21 @@ router.get('/', function(req, res) {
     });
 });
 
+// JOIN USER TABLE INTO TWO BELOW TO DISPLAY USER NAME FOR EACH COMMENT //
+
 router.get('/:id', function(req, res) {
     knex.select('*').from('trails').fullOuterJoin('conditions', 'trails.id', 'conditions.trail_id').where({
         trail_id: req.params.id
     }).then(function(data) {
-      console.log(data);
         res.status(200).render('showSingleTrail', {
             trail: data[0],
             trails: data
         });
     }).catch(function(err) {
-      console.error(err);
       res.sendStatus(500);
     });
 });
+
 
 
 router.get('/:id/new', function(req, res) {
@@ -37,18 +40,18 @@ router.get('/:id/new', function(req, res) {
 });
 
 router.post('/:id', function(req, res) {
-  console.log('**************');
-  console.log(req.params.id);
+
   knex('conditions').insert({
     trail_id: req.params.id,
+    user_id: JSON.parse(req.session.id),
     comment: req.body.condition.comment,
     creation_date: new Date()
   })
   .then(function(data){
-    res.redirect('/');
+    console.log(data);
+    res.redirect('/' + req.params.id);
   })
   .catch(function(err) {
-  console.error(err);
   res.sendStatus(500);
 });
 });

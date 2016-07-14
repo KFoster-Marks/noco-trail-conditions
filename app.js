@@ -9,7 +9,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var methodOverride = require('method-override');
+
 require('dotenv').load();
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
