@@ -20,18 +20,24 @@ router.get('/', function(req, res) {
 // JOIN USER TABLE INTO TWO BELOW TO DISPLAY USER NAME FOR EACH COMMENT //
 
 router.get('/:id', function(req, res) {
-    knex.select('*').from('trails').fullOuterJoin('conditions', 'trails.id', 'conditions.trail_id').where({
-        trail_id: req.params.id
-    }).then(function(data) {
+    knex('conditions')
+    .join('trails', {'trails.id': 'conditions.trail_id'})
+    .join('users', {'users.id': 'conditions.user_id'})
+    .select('trails.id AS id', 'trails.name AS name', 'comment', 'creation_date', 'username', 'trail_length', 'description', 'elevation_gain')
+    .where({trail_id: req.params.id})
+    .orderBy('creation_date', 'desc')
+    .limit(3)
+    .then(function(data) {
+        console.log(data);
         res.status(200).render('showSingleTrail', {
             trail: data[0],
             trails: data
         });
     }).catch(function(err) {
+      //console.log(err);
       res.sendStatus(500);
     });
 });
-
 
 
 router.get('/:id/new', function(req, res) {
@@ -48,7 +54,7 @@ router.post('/:id', function(req, res) {
   })
   .then(function(data){
     console.log(data);
-    res.redirect('/' + req.params.id);
+    res.redirect('/trails/' + req.params.id);
   })
   .catch(function(err) {
   res.sendStatus(500);

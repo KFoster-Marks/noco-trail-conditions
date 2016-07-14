@@ -29,7 +29,7 @@
             <h2>Trail Conditions</h2>
             <% trails.forEach(function(comment) { %>
               <p>
-                <span class="bold"><%=(comment.creation_date).toLocaleDateString('en-US')%> @ <%=(comment.creation_date).toLocaleTimeString('en-US')%></span>
+                <span class="bold"><%=(comment.creation_date).toLocaleDateString('en-US')%> @ <%=(comment.creation_date).toLocaleTimeString('en-US')%></span> <span class="comment-username">by <%= comment.username %></span>
               </p>
               <p>
                   <%= comment.comment %>
@@ -37,7 +37,7 @@
               <hr>
             <% }); %>
             <% if (session.username) { %>
-                <a id="link-button" href="/trails/<%= trail.trail_id %>/new">Post New Trail Condition</a>
+                <a id="link-button" href="/trails/<%= trail.id %>/new">Post New Trail Condition</a>
             <% } %>
         </div>
 
