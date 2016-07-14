@@ -6,30 +6,44 @@
   <body>
     <% include partials/header %>
 
-    <h1><%= trail.name %></h1>
-    <p><%= trail.description %></p>
+    <div class="container-fluid">
+      <div class="row">
+        <div id="trail-view-image" class="col-sm-12"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-1"></div>
+        <div id="trail-details" class="col-sm-5">
+          <h1><%= trail.name %></h1>
+          <!-- if a user is logged in -->
 
-    <p><span>Trail length:<span> <%= trail.trail_length %></p>
-    <p><span>Elevation gain:<span> <%= trail.elevation_gain %></p>
+          <hr>
+          <p><%= trail.description %></p>
 
-      <!-- if a user is logged in -->
-      <% if (session.username) { %>
+          <p><span class="bold">Trail length:</span> <%= trail.trail_length %></p>
+          <p><span class="bold">Elevation gain:</span> <%= trail.elevation_gain %></p>
 
-          <a id="link-button" href="/trails/<%= trail.trail_id %>/new">Post New Trail Condition</a>
+          <hr>
+        </div>
 
-      <% } %>
+        <div id="conditions" class="col-sm-5">
+            <h2>Trail Conditions</h2>
+            <% trails.forEach(function(comment) { %>
+              <p>
+                <span class="bold"><%=(comment.creation_date).toLocaleDateString('en-US')%> @ <%=(comment.creation_date).toLocaleTimeString('en-US')%></span>
+              </p>
+              <p>
+                  <%= comment.comment %>
+              </p>
+              <hr>
+            <% }); %>
+            <% if (session.username) { %>
+                <a id="link-button" href="/trails/<%= trail.trail_id %>/new">Post New Trail Condition</a>
+            <% } %>
+        </div>
 
 
-      <% trails.forEach(function(comment) { %>
-        <p>
-          <%= comment.creation_date %>
-        </p>
-        <p>
-            <%= comment.comment %>
-        </p>
-      <% }); %>
 
-
-
+      </div>
+    </div>
   </body>
 </html>

@@ -39,6 +39,12 @@ body {
 .navbar-right {
   margin: 45px 20px 0 0;
 }
+#welcome-message {
+  margin-right: 5px;
+  background-color: #F5DBA2;
+  padding: 10px;
+  border-radius: 5px;
+}
 #landing-image {
   /*width: 100%;*/
   height: 575px;
@@ -58,9 +64,19 @@ body {
 #center-div h1 {
   margin-top: 0;
 }
-#center-div .form-control {
-  margin: 20px;
-  width: 90%;
+button {
+  background-color: #DC3F1C;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  padding: 10px;
+}
+button:hover {
+  background-color: #D8A027;
+  color: #DC3F1C;
+}
+input {
+  margin-left: 5px;
 }
 #center-div a {
   text-decoration: none;
@@ -114,4 +130,39 @@ body {
   background-color: #DC3F1C;
   padding: 5px;
   border-radius: 5px;
+}
+
+/*specific trail view*/
+#trail-view-image {
+  background-image: url('https://images.unsplash.com/uploads/14114036359651bd991f1/b3ed8fdf?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=f522d9aa3c2ff08ee35e06b019e9baa7');
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+}
+#trail-details h1 {
+  font-size: 3.2em;
+}
+#trail-details p {
+  font-size: 1.2em;
+}
+.bold {
+  font-weight: bold;
+}
+#conditions {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #F5DBA2;
+  border-radius: 5px;
+}
+#conditions #link-button {
+  margin-left: 0;
+}
+#conditions #link-button:hover {
+  background-color: #D8A027;
+  color: #DC3F1C;
+  text-decoration: none;
+}
+hr {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }

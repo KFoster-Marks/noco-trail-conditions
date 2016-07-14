@@ -5,32 +5,46 @@
   </head>
   <body>
 
-    <header class="nav">
-        <nav class="nav-main">
-            <a class="nav-logo" href="/">
-                <h1>NoCoTrailConditions</h1>
-            </a>
-        </nav>
-    </header>
+    <% include partials/headerConcise %>
 
-    <h1>login</h1>
-    <form method="POST" action="/users/auth">
-      <label>Username
-        <input name="user[username]" type="text">
-      </label>
-      <label>Password
-        <input name="user[password]" type="password">
-      </label>
-      <button type="submit">Log In</button>
-    </form>
+    <div class="container-fluid">
+      <div class="row" id="landing-image">
+          <div class="col-sm-4"></div>
+          <div id='center-div' class="col-sm-4">
+            <h1>login</h1>
+            <form method="POST" action="/users/auth">
 
-    <% if (info.noMatch) { %>
-    <p class="error-message">&#42; Incorrect username and password combination.</p>
-    <% } %>
+              <div class="form-group">
+                <label>Username
+                  <input name="user[username]" type="text">
+                </label>
+              </div>
 
-    <% if (info.userDoesNotExist) { %>
-    <p class="error-message">&#42; That username does not exist in our database.</p>
-    <% } %>
+              <div class="form-group">
+                <label>Password
+                  <input name="user[password]" type="password">
+                </label>
+              </div>
+              <button type="submit">Log In</button>
+            </form>
+
+            <% if (info.noMatch) { %>
+            <p class="error-message">&#42; Incorrect username and password combination.</p>
+            <% } %>
+
+            <% if (info.userDoesNotExist) { %>
+            <p class="error-message">&#42; That username does not exist in our database.</p>
+            <% } %>
+
+
+          </div>
+
+          <div class="col-sm-4"></div>
+      </div>
+    </div>
+
+    ///////////////
+
 
 
   </body>

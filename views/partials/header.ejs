@@ -14,7 +14,7 @@
       <ul class="nav navbar-nav navbar-right">
         <!-- if a user is logged in -->
         <% if (session.username) { %>
-            <li>Welcome,
+            <li id="welcome-message">Welcome,
                 <%= session.username %>
             </li>
             <li><a href="/users/edit/<%=session.id%>">Update Profile</a></li>
