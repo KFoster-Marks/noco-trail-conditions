@@ -9,11 +9,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var methodOverride = require('method-override');
+
 require('dotenv').load();
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-//var conditions = require('./routes/conditions');
+var trails = require('./routes/trails');
 
 var app = express();
 
@@ -42,7 +44,7 @@ app.use(function(req, res, next) {
 
 app.use('/', index);
 app.use('/users', users);
-//app.use('/conditions', conditions);
+app.use('/trails', trails);
 
 
 

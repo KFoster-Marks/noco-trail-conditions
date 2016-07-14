@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/head %>
+  </head>
+  <body>
+    <% include partials/header %>
+
+    <h1>Trail Conditions</h1>
+
+
+    <ul>
+    <% trails.forEach(function(trail) { %>
+      <li>
+        <a href="/trails/<%= trail.id %>">
+          <%= trail.name %>
+        </a>
+      </li>
+    <% }); %>
+    </ul>
+
+  </body>
+</html>

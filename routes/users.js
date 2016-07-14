@@ -5,11 +5,12 @@ var router = express.Router();
 var knex = require('../db/knex');
 var bcrypt = require('bcrypt');
 
+
+// CREATE USER ROUTES & FUNCTIONS //
 router.get('/', function(req, res) {
   var info = {};
   res.render('createUser', {info: info});
 });
-
 
 router.post('/', function(req, res) {
   var info = {
@@ -50,11 +51,6 @@ router.post('/', function(req, res) {
   }
 });
 
-
-
-/// END CHECK IF USER EXISTS /////
-
-
 function checkPassword(req, info) {
   console.log('entered checkPassword function');
   info.password = req.body.user.password;
@@ -75,7 +71,6 @@ function checkPassword(req, info) {
   }
 }
 
-
 // LOGIN ROUTES //
 router.get('/login', function(req, res) {
   //declare info object here to enable error message below; ejs won't recognize info object otherwise.
@@ -89,7 +84,6 @@ router.post('/auth', function(req, res, next) {
   var info = {
     user: req.body.user.username,
   };
-
   knex('users').select('username', 'password', 'id').where({
     username: req.body.user.username
   }).then(function(data) {
@@ -117,7 +111,6 @@ router.post('/auth', function(req, res, next) {
       });
     }
   }).catch(next);
-
 });
 
 // UPDATE PROFILE ROUTES //
@@ -131,7 +124,6 @@ router.get('/edit/:id', function(req, res) {
 });
 
 router.put('/edit/:id', function(req, res) {
-
   knex('users').where('id', req.params.id).update({
     name: req.body.user.name,
     email: req.body.user.email,
@@ -147,9 +139,7 @@ router.put('/edit/:id', function(req, res) {
   });
 });
 
-
-
-// LOGOUT ROUTE //
+// LOGOUT ROUTES //
 router.get('/logout', function(req, res) {
   req.session = null;
   res.redirect('/');
