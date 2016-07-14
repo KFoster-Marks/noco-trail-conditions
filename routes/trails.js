@@ -11,7 +11,6 @@ moment().format();
 
 router.get('/', function(req, res) {
     knex.select().table('trails').then(function(data) {
-        console.log(data);
         res.render('showAllTrails', {
             trails: data
         });

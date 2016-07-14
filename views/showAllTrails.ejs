@@ -3,21 +3,30 @@
   <head>
     <% include partials/head %>
   </head>
-  <body>
+  <body id="trail-list-body">
     <% include partials/header %>
 
-    <h1>Trail Conditions</h1>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div id="trail-list-image-left" class="col-sm-4"></div>
+          <div id="trail-list-div" class="col-sm-4">
+            <h1>Trails</h1>
+            <ul>
+            <% trails.forEach(function(trail) { %>
+              <li>
+                <a href="/trails/<%= trail.id %>">
+                  <%= trail.name %>
+                </a>
+              </li>
+            <% }); %>
+            </ul>
+          </div>
+          <div id="trail-list-image-right" class="col-sm-4"></div>
+        </div>
+      </div>
 
 
-    <ul>
-    <% trails.forEach(function(trail) { %>
-      <li>
-        <a href="/trails/<%= trail.id %>">
-          <%= trail.name %>
-        </a>
-      </li>
-    <% }); %>
-    </ul>
 
   </body>
 </html>
