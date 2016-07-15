@@ -11,22 +11,24 @@
         <div id="trail-view-image" class="col-sm-12"></div>
       </div>
       <div class="row">
-        <div class="col-sm-1"></div>
-        <div id="trail-details" class="col-sm-5">
+        <div class="col-sm-2"></div>
+        <div id="details" class="col-sm-4">
           <h1><%= user.name %></h1>
           <hr>
           <p><%= user.email %></p>
-          <p><%= user.city %></p>
-          <p><%= user.favorite_trail %></p>
-          <p><%= user.username %></p>
+          <p><span class="bold">Hometown:</span> <%= user.city %></p>
+          <p><span class="bold">Favorite trail:</span> <%= user.favorite_trail %></p>
+          <p class="bottom-pad"><span class="bold">Username:</span> <%= user.username %></p>
           <a id="link-button" href="/users/edit/<%=session.id%>">Update Profile</a>
         </div>
 
 
-
-
         <div id="conditions" class="col-sm-5">
-            <h2>Trail Conditions</h2>
+            <h2>Trail Condition Posts</h2>
+
+            <% if(trails.length < 1) { %>
+                <div>You haven't posted any trail conditions yet.</div>
+            <% } else { %>
             <% trails.forEach(function(comment) { %>
               <p>
                 <span class="bold"><%=(comment.creation_date).toLocaleDateString('en-US')%> @ <%=(comment.creation_date).toLocaleTimeString('en-US')%></span>
@@ -40,6 +42,7 @@
               </form>
               <hr>
             <% }); %>
+            <% } %>
         </div>
 
 

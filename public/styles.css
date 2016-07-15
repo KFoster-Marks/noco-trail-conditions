@@ -3,6 +3,7 @@ body {
 }
 .error-message {
   color: red;
+  margin: 10px 0;
 }
 .navbar {
   background-color: white;
@@ -149,14 +150,26 @@ input {
   background-size: cover;
   background-position: center;
 }
-#trail-details h1 {
+#details h1 {
   font-size: 3.2em;
 }
-#trail-details p {
+#details p {
   font-size: 1.2em;
 }
 .bold {
   font-weight: bold;
+}
+.bottom-pad {
+  padding-bottom: 10px;
+}
+#trail-list-link {
+  color: #DC3F1C;
+  text-decoration: none;
+}
+#trail-list-link:hover {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #D8A027;
 }
 #conditions {
   margin-top: 20px;
@@ -164,10 +177,10 @@ input {
   background-color: #F5DBA2;
   border-radius: 5px;
 }
-#conditions #link-button {
+#conditions #link-button, #details #link-button {
   margin-left: 0;
 }
-#conditions #link-button:hover {
+#conditions #link-button:hover, #details #link-button:hover {
   background-color: #D8A027;
   color: #DC3F1C;
   text-decoration: none;
@@ -192,4 +205,11 @@ hr {
 }
 .delete button {
   margin-bottom: 10px;
+}
+textarea {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+  margin: 10px 0;
 }

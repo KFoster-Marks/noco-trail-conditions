@@ -1,22 +1,24 @@
-
-
 <!DOCTYPE html>
 <html>
   <head>
     <% include partials/head %>
   </head>
-  <body>
+  <body id="trail-list-body">
     <% include partials/header %>
 
-    <h1>create new trail condition</h1>
 
-    <form method='POST' action='/trails/<%= id %>'>
-
-      <label>Comment
-        <textarea rows='5' cols='40' minlength='20' name='condition[comment]' type='text' placeholder='Write comment here' required></textarea>
-      </label>
-      <button type="submit">Add Condition</button>
-    </form>
-
+    <div class="container-fluid">
+      <div class="row">
+        <div id="trail-list-image-left" class="col-sm-4"></div>
+          <div id="trail-list-div" class="col-sm-4">
+            <h1>Update Trail Condition</h1>
+            <form method='POST' action='/trails/<%= id %>'>
+                <textarea rows='7' minlength='15' name='condition[comment]' type='text' placeholder='Add your update here...' required></textarea>
+                <button type="submit">Add Update</button>
+            </form>
+          </div>
+          <div id="trail-list-image-right" class="col-sm-4"></div>
+        </div>
+      </div>
   </body>
 </html>

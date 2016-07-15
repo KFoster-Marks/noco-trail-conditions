@@ -12,7 +12,7 @@
       </div>
       <div class="row">
         <div class="col-sm-1"></div>
-        <div id="trail-details" class="col-sm-5">
+        <div id="details" class="col-sm-5">
           <h1><%= trail.name %></h1>
           <!-- if a user is logged in -->
 
@@ -22,11 +22,21 @@
           <p><span class="bold">Trail length:</span> <%= trail.trail_length %></p>
           <p><span class="bold">Elevation gain:</span> <%= trail.elevation_gain %></p>
           <hr>
-          <a href="/trails">See all trails</a>
+          <a id="trail-list-link" href="/trails">Back to trail list</a>
         </div>
 
         <div id="conditions" class="col-sm-5">
             <h2>Trail Conditions</h2>
+            <% if(trails.length < 1) { %>
+                <p class="bottom-pad">Nobody has posted any trail conditions for this trail yet.</p>
+
+                <% if (session.username) { %>
+                    <a id="link-button" href="/trails/<%= trail.id %>/new">Post New Trail Condition</a>
+
+                <% } else { %>
+                    <a id="link-button" href="/users/login">Log in to Update</a>
+                <% } %>
+            <% } else { %>
             <% trails.forEach(function(comment) { %>
               <p>
                 <span class="bold"><%=(comment.creation_date).toLocaleDateString('en-US')%> @ <%=(comment.creation_date).toLocaleTimeString('en-US')%></span> <span class="comment-username">by <%= comment.username %></span>
@@ -38,6 +48,9 @@
             <% }); %>
             <% if (session.username) { %>
                 <a id="link-button" href="/trails/<%= trail.id %>/new">Post New Trail Condition</a>
+            <% } else { %>
+                <a id="link-button" href="/users/login">Log in to Update</a>
+            <% } %>
             <% } %>
         </div>
 

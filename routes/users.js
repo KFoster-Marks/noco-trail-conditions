@@ -163,11 +163,22 @@ router.get('/:id', function(req, res) {
   .orderBy('creation_date', 'desc')
     .then(function(data) {
       console.log(data);
-      res.status(200).render('showUser', {user:data[0], trails:data});
-    }).catch(function(err){
-      //console.error(err);
-      res.sendStatus(500);
-    });
+
+      if(data.length < 1) {
+        knex('users').select().where({id: req.params.id})
+        .then(function(data){
+          console.log(data);
+          res.status(200).render('showUser', {user:data[0], trails: [] });
+        });
+
+      } else {
+        res.status(200).render('showUser', {user:data[0], trails:data});
+      }})
+
+      .catch(function(err){
+        //console.error(err);
+        res.sendStatus(500);
+      });
 });
 
 
