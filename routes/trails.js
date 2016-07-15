@@ -7,6 +7,23 @@ var knex = require('../db/knex');
 
 // SHOW TRAIL //
 
+router.get('/all', function(req, res){
+  knex('conditions')
+    .join('trails', {'trails.id': 'conditions.trail_id'})
+
+    .join('users', {'users.id': 'conditions.user_id'})
+
+    .select('conditions.id AS id', 'users.name AS name', 'trails.name AS trail_name', 'trails.id AS trail_id', 'comment', 'creation_date', 'username')
+    .orderBy('creation_date', 'desc')
+
+    .then(function(data) {
+        res.render('showAllConditions', {conditions: data});
+    }).catch(function(err) {
+        console.log(err);
+        res.sendStatus(500);
+    });
+});
+
 router.get('/', function(req, res) {
     knex.select().table('trails').then(function(data) {
         res.render('showAllTrails', {
@@ -51,21 +68,18 @@ router.get('/:id', function(req, res) {
         });
 });
 
-router.get('/all', function(req, res){
-  
 
-
-  res.render('showAllConditions', {conditions: data});
-}).catch(function(err) {
-    //console.log(err);
-    res.sendStatus(500);
-});
 
 router.get('/:id/new', function(req, res) {
     res.render('newTrailCondition', {
         id: req.params.id
     });
 });
+
+
+
+
+
 
 router.post('/:id', function(req, res) {
 

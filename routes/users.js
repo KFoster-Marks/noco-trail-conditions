@@ -37,7 +37,8 @@ router.delete('/delete', function(req, res) {
 // CREATE USER ROUTES & FUNCTIONS //
 router.get('/', function(req, res) {
   var info = {};
-  res.render('createUser', {info: info});
+  var user = {};
+  res.render('createUser', {info: info, user: user});
 });
 
 router.post('/', function(req, res) {
@@ -47,11 +48,18 @@ router.post('/', function(req, res) {
     userExists: false,
     existError: "That username or email already exists in our system"
   };
+  var user = {
+    name: req.body.user.name,
+    email: req.body.user.email,
+    city:req.body.user.city,
+    favorite_trail:req.body.user.favorite_trail,
+    username: req.body.user.username,
+  };
   info.error = {};
   checkPassword(req, info);
   exists(req.body.user.username, req.body.user.email).then(function(result) {
     if (info.passwordError) {
-      res.render('createUser', {info: info});
+      res.render('createUser', {info: info, user: user});
     } else if (result.length >= 1) {
         info.userExists = true;
         console.log(info);
@@ -157,6 +165,7 @@ router.get('/:id', function(req, res) {
   .join('trails', {'trails.id': 'conditions.trail_id'})
 
   .join('users', {'users.id': 'conditions.user_id'})
+
   .select('users.id AS id', 'users.name AS name', 'trails.name AS trail_name', 'conditions.id AS condition_id', 'email', 'city', 'favorite_trail', 'comment', 'creation_date', 'username')
 
   .where({user_id: req.params.id})

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/head %>
+  </head>
+  <body id="trail-list-body">
+    <% include partials/header %>
+
+
+    <div class="container-fluid">
+      <div class="row">
+        <div id="trail-list-image-left" class="col-sm-3"></div>
+          <div id="trail-list-div" class="col-sm-6">
+            <hr>
+            <a class="bold" href="/trails">Back to trail list</a>
+            <hr>
+            <% conditions.forEach(function(condition) { %>
+              <h3><%= condition.trail_name %></h3>
+              <p>
+                <span class="bold"><%=(condition.creation_date).toLocaleDateString('en-US')%> @ <%=(condition.creation_date).toLocaleTimeString('en-US')%></span> <span class="comment-username">by <%= condition.username %></span>
+              </p>
+              <p>
+                  <%= condition.comment %>
+              </p>
+              <hr>
+
+
+            <% }); %>
+          </div>
+          <div id="trail-list-image-right" class="col-sm-3"></div>
+        </div>
+      </div>
+  </body>
+</html>
