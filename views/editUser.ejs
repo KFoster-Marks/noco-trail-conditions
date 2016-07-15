@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <% include partials/head %>
-  </head>
-  <body>
+</head>
 
-    <header class="nav">
-        <nav class="nav-main">
-            <a class="nav-logo" href="/">
-                <h1>NoCoTrailConditions</h1>
-            </a>
-        </nav>
-    </header>
+<body>
 
+  <% include partials/header %>
 
-    <h1>Edit Your Profile</h1>
-    <form method="POST" action="/users/edit/<%= user.id %>?_method=PUT">
-      <label>Name
-        <input name="user[name]" type="text" placeholder="<%=user.name%>" value="<%=user.name%>" required>
-      </label>
-      <label>Email
-        <input name="user[email]" type="email" placeholder="<%=user.email%>" value="<%=user.email%>" required>
-      </label>
-      <label>City
-        <input name="user[city]" type="text" placeholder="<%=user.city%>" value="<%=user.city%>">
-      </label>
-      <label>Favorite Trail
-        <input name="user[favorite_trail]" type="text" placeholder="<%=user.favorite_trail%>" value="<%=user.favorite_trail%>">
-      </label>
-      <label>Username
-        <input name="user[username]" type="text" placeholder="<%=user.username%>" value="<%=user.username%>" required>
-      </label>
-      <button type="submit">Submit Changes</button>
-    </form>
-
-    <a href="/users/delete" class="nav-button-primary">Delete Account</a>
-
-
-  </body>
+    <div class="container-fluid">
+        <div class="row" id="landing-image">
+            <div class="col-sm-4"></div>
+            <div id='center-div-signup' class="col-sm-4">
+                <h1>Edit Your Profile</h1>
+                <form id="signup" method="POST" action="/users/edit/<%= user.id %>?_method=PUT">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input name="user[name]" type="text" placeholder="<%=user.name%>" value="<%=user.name%>" required>
+                    </div>
+                    <div class="form-group">
+                      <label>Email</label>
+                      <input name="user[email]" type="email" placeholder="<%=user.email%>" value="<%=user.email%>" required>
+                    </div>
+                    <div class="form-group">
+                      <label>City</label>
+                      <input name="user[city]" type="text" placeholder="<%=user.city%>" value="<%=user.city%>">
+                    </div>
+                    <div class="form-group">
+                      <label>Favorite Trail</label>
+                      <input name="user[favorite_trail]" type="text" placeholder="<%=user.favorite_trail%>" value="<%=user.favorite_trail%>">
+                    </div>
+                    <div class="form-group">
+                      <label>Username</label>
+                      <input name="user[username]" type="text" placeholder="<%=user.username%>" value="<%=user.username%>" required>
+                    </div>
+                    <button type="submit">Submit Changes</button>
+                </form>
+                <div id="delete-account">
+                  <a href="/users/delete" class="nav-button-primary">Delete Account</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

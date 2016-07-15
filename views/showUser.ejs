@@ -13,33 +13,36 @@
       <div class="row">
         <div class="col-sm-1"></div>
         <div id="trail-details" class="col-sm-5">
-          <h1><%= trail.name %></h1>
-          <!-- if a user is logged in -->
-
+          <h1><%= user.name %></h1>
           <hr>
-          <p><%= trail.description %></p>
-
-          <p><span class="bold">Trail length:</span> <%= trail.trail_length %></p>
-          <p><span class="bold">Elevation gain:</span> <%= trail.elevation_gain %></p>
-          <hr>
-          <a href="/trails">See all trails</a>
+          <p><%= user.email %></p>
+          <p><%= user.city %></p>
+          <p><%= user.favorite_trail %></p>
+          <p><%= user.username %></p>
+          <a id="link-button" href="/users/edit/<%=session.id%>">Update Profile</a>
         </div>
+
+
+
 
         <div id="conditions" class="col-sm-5">
             <h2>Trail Conditions</h2>
             <% trails.forEach(function(comment) { %>
               <p>
-                <span class="bold"><%=(comment.creation_date).toLocaleDateString('en-US')%> @ <%=(comment.creation_date).toLocaleTimeString('en-US')%></span> <span class="comment-username">by <%= comment.username %></span>
+                <span class="bold"><%=(comment.creation_date).toLocaleDateString('en-US')%> @ <%=(comment.creation_date).toLocaleTimeString('en-US')%></span>
               </p>
               <p>
                   <%= comment.comment %>
               </p>
+
+              <form method="POST" action="/trails/delete/<%= comment.condition_id%>?_method=DELETE">
+                  <button type='submit'>Delete Comment</button>
+              </form>
               <hr>
             <% }); %>
-            <% if (session.username) { %>
-                <a id="link-button" href="/trails/<%= trail.id %>/new">Post New Trail Condition</a>
-            <% } %>
         </div>
+
+
 
 
 
