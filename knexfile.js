@@ -14,12 +14,13 @@ module.exports = {
   production: {
     client: 'postgresql',
     connection: {
-      database: process.env.DATABASE_URL,
+      database: 'postgres://pdzkzaiywoqxxe:278QDcG2LwKBGjkmqyKS3M5QH1@ec2-107-20-166-28.compute-1.amazonaws.com:5432/dbj99m1bl1kpei',
       user:     'username',
       password: 'password'
-    },
-    migrations: {
-      directory: __dirname + '/migrations'
-    },
+    }
+    // ,
+    // migrations: {
+    //   directory: __dirname + '/migrations'
+    // },
   }
 };
