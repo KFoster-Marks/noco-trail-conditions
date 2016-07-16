@@ -18,8 +18,5 @@ module.exports = {
       user:     'username',
       password: 'password'
     },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
   }
 };

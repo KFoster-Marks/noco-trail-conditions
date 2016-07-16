@@ -9,7 +9,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var methodOverride = require('method-override');
-var db  = require('/db/knex.js');
 
 
 require('dotenv').load();
