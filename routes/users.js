@@ -7,9 +7,6 @@ var bcrypt = require('bcrypt');
 
 
 
-
-
-
 // LOGOUT ROUTES //
 router.get('/logout', function(req, res) {
   console.log("entered logout route");
@@ -163,30 +160,29 @@ router.post('/auth', function(req, res, next) {
 router.get('/:id', function(req, res) {
   knex('conditions')
   .join('trails', {'trails.id': 'conditions.trail_id'})
-
   .join('users', {'users.id': 'conditions.user_id'})
-
   .select('users.id AS id', 'users.name AS name', 'trails.name AS trail_name', 'conditions.id AS condition_id', 'email', 'city', 'favorite_trail', 'comment', 'creation_date', 'username')
-
   .where({user_id: req.params.id})
   .orderBy('creation_date', 'desc')
     .then(function(data) {
       console.log(data);
 
-      if(data.length < 1) {
-        knex('users').select().where({id: req.params.id})
-        .then(function(data){
-          console.log(data);
-          res.status(200).render('showUser', {user:data[0], trails: [] });
-        });
-
+      if(req.session.id !== data[0].id) {
+        console.log('No authorization to view this profile.');
+        res.redirect('/users/' + req.session.id);
       } else {
-        res.status(200).render('showUser', {user:data[0], trails:data});
-      }})
+        console.log('User has authorization to view this profile');
 
-      .catch(function(err){
-        //console.error(err);
-        res.sendStatus(500);
+        if(data.length < 1) {
+          knex('users').select().where({id: req.params.id})
+          .then(function(data){
+            console.log(data);
+            res.status(200).render('showUser', {user:data[0], trails: [] });
+          });
+        } else {
+          res.status(200).render('showUser', {user:data[0], trails:data});
+        }
+      }
       });
 });
 

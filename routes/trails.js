@@ -25,12 +25,16 @@ router.get('/all', function(req, res){
 });
 
 router.get('/', function(req, res) {
-    knex.select().table('trails').then(function(data) {
-        res.render('showAllTrails', {
-            trails: data
-        });
+    knex('trails').select('name', 'id')
+    .orderBy('name', 'asc')
+    .then(function(data) {
+      console.log(data);
+      res.render('showAllTrails', {
+          trails: data
     });
+  });
 });
+
 
 // JOIN USER TABLE INTO TWO BELOW TO DISPLAY USER NAME FOR EACH COMMENT //
 
