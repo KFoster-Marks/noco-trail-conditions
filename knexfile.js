@@ -19,7 +19,7 @@ module.exports = {
       password: 'password'
     },
     migrations: {
-      directory: __dirname + '/db/migrations'
+      directory: __dirname + '/migrations'
     },
   }
 };
