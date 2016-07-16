@@ -76,7 +76,7 @@ router.post('/', function(req, res) {
             }).returning('id')
               .then(function(id) {
                 req.session = {};
-                req.session.id = id;
+                req.session.id = id[0];
                 req.session.username = req.body.user.username;
                 console.log(req.session);
                 res.redirect('/');
@@ -162,16 +162,16 @@ router.get('/:id', function(req, res) {
   .join('trails', {'trails.id': 'conditions.trail_id'})
   .join('users', {'users.id': 'conditions.user_id'})
   .select('users.id AS id', 'users.name AS name', 'trails.name AS trail_name', 'conditions.id AS condition_id', 'email', 'city', 'favorite_trail', 'comment', 'creation_date', 'username')
-  .where({user_id: req.params.id})
+  .where({user_id: req.session.id})
   .orderBy('creation_date', 'desc')
     .then(function(data) {
       console.log(data);
 
-      if(req.session.id !== data[0].id) {
-        console.log('No authorization to view this profile.');
-        res.redirect('/users/' + req.session.id);
-      } else {
-        console.log('User has authorization to view this profile');
+      // if(req.session.id !== data.id) {
+      //   console.log('No authorization to view this profile.');
+      //   res.redirect('/');
+      // } else {
+      //   console.log('User has authorization to view this profile');
 
         if(data.length < 1) {
           knex('users').select().where({id: req.params.id})
@@ -182,7 +182,7 @@ router.get('/:id', function(req, res) {
         } else {
           res.status(200).render('showUser', {user:data[0], trails:data});
         }
-      }
+      //}
       });
 });
 

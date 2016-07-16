@@ -177,7 +177,7 @@ input {
   background-color: #F5DBA2;
   border-radius: 5px;
 }
-#conditions #link-button, #details #link-button {
+#conditions #link-button, #details #link-button  {
   margin-left: 0;
 }
 #conditions #link-button:hover, #details #link-button:hover {
@@ -212,4 +212,7 @@ textarea {
 	box-sizing: border-box;
 	width: 100%;
   margin: 10px 0;
+}
+#create-trail {
+  width: 111%;
 }

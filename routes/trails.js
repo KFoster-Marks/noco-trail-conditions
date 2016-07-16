@@ -7,6 +7,24 @@ var knex = require('../db/knex');
 
 // SHOW TRAIL //
 
+router.get('/new', function(req, res) {
+  res.render('createTrail');
+});
+
+router.post('/new', function(req, res) {
+  knex('trails').insert({
+    name: req.body.trail.name,
+    description: req.body.trail.description,
+    trail_length: req.body.trail.length,
+    elevation_gain: req.body.trail.elevation_gain
+  }).then(function() {
+    res.redirect('/trails');
+  }).catch(function(err) {
+    console.error(err);
+    res.sendStatus(500);
+  });
+});
+
 router.get('/all', function(req, res){
   knex('conditions')
     .join('trails', {'trails.id': 'conditions.trail_id'})
@@ -79,10 +97,6 @@ router.get('/:id/new', function(req, res) {
         id: req.params.id
     });
 });
-
-
-
-
 
 
 router.post('/:id', function(req, res) {
