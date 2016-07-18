@@ -2,7 +2,7 @@
 
 
 
-Anybody who has tried to run or hike in Colorado through cold, snowy winters, spring deluges, sweltering summer heat, or frequent fall racing events knows that any two consecutive days on your favorite trail might necessitate drastically different gear and preparation. NoCo Trail Conditions is an Express application that was built in order to bring updates on current Northern Colorado trail conditions to runners and hikers interested in visiting these trails.
+Anybody who has tried to run or hike in Colorado through cold, snowy winters, spring deluges, sweltering summer heat, or frequent fall racing events knows that any two consecutive days on your favorite trail might necessitate drastically different gear and preparation. [NoCo Trail Conditions] (https://noco-trail-conditions.herokuapp.com/) is an Express application that was built in order to bring updates on current Northern Colorado trail conditions to runners and hikers interested in visiting these trails.
 
 Upon entering the site, users are presented with the option to register, login, or see a list of trails.
 
