@@ -49,7 +49,7 @@ body {
 #landing-image {
   /*width: 100%;*/
   height: 575px;
-  background-image: url('https://images.unsplash.com/uploads/14114036359651bd991f1/b3ed8fdf?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=f522d9aa3c2ff08ee35e06b019e9baa7');
+  background-image: url('./images/landing.jpeg');
   background-size: cover;
   background-position: center;
   overflow-x: hidden;
@@ -102,13 +102,13 @@ input {
 
 /*trail list page*/
 #trail-list-image-left {
-  background-image: url('https://images.unsplash.com/uploads/14114036359651bd991f1/b3ed8fdf?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=f522d9aa3c2ff08ee35e06b019e9baa7');
+  background-image: url('./images/landing.jpeg');
   height: 700px;
   background-size: cover;
   background-position: left;
 }
 #trail-list-image-right {
-  background-image: url('https://images.unsplash.com/uploads/14114036359651bd991f1/b3ed8fdf?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=f522d9aa3c2ff08ee35e06b019e9baa7');
+  background-image: url('./images/landing.jpeg');
   height: 700px;
   background-size: cover;
   background-position: right;
@@ -145,7 +145,7 @@ input {
 
 /*specific trail view*/
 #trail-view-image {
-  background-image: url('https://images.unsplash.com/uploads/14114036359651bd991f1/b3ed8fdf?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=f522d9aa3c2ff08ee35e06b019e9baa7');
+  background-image: url('./images/landing.jpeg');
   height: 100px;
   background-size: cover;
   background-position: center;
